@@ -1,0 +1,3 @@
+
+bind = resize +5
+bind - resize -5
