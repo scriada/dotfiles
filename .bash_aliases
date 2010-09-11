@@ -5,6 +5,7 @@ alias cls='clear'                     # shortcut to clear
 alias tmux='tmux -2'                  # tell tmux to support 256 colors
 alias dush="du -sm *|sort -n|tail"    # find large files/directories
 alias untar='tar -xf'                 # most common kind of untar command
+alias go='gnome-open'                 # can be used to launch any file with its default application
 
 # xargs vim : lets you start vim with piped arguments
 xvim() {
