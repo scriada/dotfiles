@@ -25,7 +25,9 @@
     ci = commit
     co = checkout
     br = branch
-    # view diff in vim
-    vdiff = difftool --no-prompt -t vimdiff
+    mt = mergetool
+    p4merge = mergetool --no-prompt --tool=p4merge  
+    vmerge  = mergetool --no-prompt --tool=gvimdiff 
+    vdiff   = difftool  --no-prompt --tool=vimdiff
 [merge]
 	tool = vimdiff
