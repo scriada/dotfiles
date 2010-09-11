@@ -31,3 +31,5 @@
     vdiff   = difftool  --no-prompt --tool=vimdiff
 [merge]
 	tool = vimdiff
+[ui]
+	color = true
