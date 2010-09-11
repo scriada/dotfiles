@@ -27,3 +27,5 @@
     br = branch
     # view diff in vim
     vdiff = difftool --no-prompt -t vimdiff
+[merge]
+	tool = vimdiff
