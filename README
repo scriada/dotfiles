@@ -1,1 +1,3 @@
 This is a simple git repo for storing all my dotfiles.
+
+Note: this includes vim plugins that arent mine, but are stored here so I can easily setup vim on new machines
