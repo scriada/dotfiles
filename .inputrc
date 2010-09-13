@@ -1,0 +1,8 @@
+# include default inputrc
+$include /etc/inputrc
+
+# use vi key bindings
+set editing-mode vi
+
+# Alt-. to yank last arguments
+"\e.": yank-last-arg
