@@ -26,6 +26,7 @@
     co = checkout
     br = branch
     mt = mergetool
+    unstage = reset HEAD --
     p4merge = mergetool --no-prompt --tool=p4merge  
     vmerge  = mergetool --no-prompt --tool=gvimdiff 
     vdiff   = difftool  --no-prompt --tool=vimdiff
