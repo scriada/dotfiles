@@ -82,3 +82,6 @@ else
     set t_Co=256
 endif
 colorscheme wombat
+
+" highlight trailing whitespace as an error
+au Syntax * syntax match Error /\s\+\%#\@<!$/ containedin=ALL
