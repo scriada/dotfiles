@@ -34,6 +34,12 @@ set backspace=eol,start,indent " allow backspacing over everything in insert mod
 
 " Key bindings ---------------------------------------------------------
 
+" make ; the same as : in normal mode - saves a few keystrokes!
+nnoremap ; :
+
+" clear highlighted searches
+nmap <silent> ,/ :nohlsearch<CR>
+
 " shift-left/right to switch between tabs
 " need explicit keybindings in order to work with screen/tmux
 nmap <silent> [1;2C :tabnext<CR>
