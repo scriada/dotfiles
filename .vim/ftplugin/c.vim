@@ -1,12 +1,13 @@
 " C/C++ file settings
 
 " file indentation
-set cindent
-set cinoptions+=:0,g0,(0
+setlocal expandtab
+setlocal cindent
+setlocal cinoptions+=:0,g0,(0
 
 " folding
-set foldmethod=marker
-set foldmarker={,} 
-set foldnestmax=10    " 10 levels max
-set foldlevel=10      " start at the top level
-set nofoldenable      " disable fold be default
+setlocal foldmethod=marker
+setlocal foldmarker={,}
+setlocal foldnestmax=10    " 10 levels max
+setlocal foldlevel=10      " start at the top level
+setlocal nofoldenable      " disable fold be default
