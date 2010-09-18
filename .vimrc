@@ -4,35 +4,33 @@
 
 " Operational settings ------------------------------------------------
 set nocompatible
-set hidden
-set more
-set hlsearch
-set ignorecase
-set number
-set smartcase
-set autoread
-set backup
-set wildmenu
-set incsearch
-set scrolloff=5
-set sidescrolloff=5
-set mouse=a
-set laststatus=2
+set hidden          " allow multiple buffers to be open
+set hlsearch        " highlight searches
+set ignorecase      " sace insensitive search
+set number          " display line numbers
+set smartcase       " ignore case if search pattern is all lowercase
+set autoread        " detect when a file has been modified ourside of vim
+set nobackup        " disable backup files
+set noswapfile      " disable .swp files
+set wildmenu        " make menu more intuitive
+set incsearch       " incremental search
+set scrolloff=5     " minimum number of lines to keep above below cursor
+set sidescrolloff=5 " minimum number of columns to keep the the side of the cursor
+set mouse=a         " enable mouse
+set shortmess+=I    " hide welcome message
+set history=500     " more history
+set laststatus=2    " always display status menu
 set statusline=%F%m%r%h%w\ (%Y)\ %=\ (%l/%L)\ [%p%%]
-set shortmess+=I         " hide welcome message
-set backupdir=/tmp       " put backups out of the way
-set history=500
 syntax on
 filetype plugin indent on
 
 " Global editing settings -------------------------------------------
-set autoindent smartindent
-set expandtab
-set smarttab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set backspace=eol,start,indent
+set autoindent       " automatically indent line
+set expandtab        " by default expand tabs
+set smarttab         " insert tabs on the start of a line according to shidtwidth, not tabstop
+set tabstop=4        " set tab to 4 spaces
+set shiftwidth=4     " number of space to use for auto-indenting
+set backspace=eol,start,indent " allow backspacing over everything in insert mode
 
 " Key bindings ---------------------------------------------------------
 
@@ -41,6 +39,7 @@ set backspace=eol,start,indent
 nmap <silent> [1;2C :tabnext<CR>
 nmap <silent> [1;2D :tabprev<CR>
 
+" useful commands when merging in vimdiff
 nmap <silent> d[ :diffget 1<CR>
 nmap <silent> d] :diffget 3<CR>
 
@@ -55,7 +54,7 @@ let g:bufExplorerSplitBelow = 1
 let g:bufExplorerOpenMode = 0
 let g:bufExplorerSplitSize = 15
 
-" Doxygen 
+" Doxygen
 let g:load_doxygen_syntax=1
 
 " netrw handler for opening html links
