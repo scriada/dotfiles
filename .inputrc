@@ -4,5 +4,9 @@ $include /etc/inputrc
 # use vi key bindings
 set editing-mode vi
 
+# up/down arrow for searching command line history
+"\C-[[A": history-search-backward
+"\C-[[B": history-search-forward
+
 # Alt-. to yank last arguments
 "\e.": yank-last-arg
