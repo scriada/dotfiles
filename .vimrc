@@ -78,8 +78,6 @@ endfun
 if $TERM == "linux"
     " For a linux console, disable CSApprox
     let g:CSApprox_loaded=1
-else
-    set t_Co=256
 endif
 colorscheme wombat
 
