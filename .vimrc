@@ -6,7 +6,8 @@
 set nocompatible
 set hidden          " allow multiple buffers to be open
 set hlsearch        " highlight searches
-set ignorecase      " sace insensitive search
+set ignorecase      " case insensitive search
+set smartcase       " case sensitive if pattern contains upper-case
 set number          " display line numbers
 set smartcase       " ignore case if search pattern is all lowercase
 set autoread        " detect when a file has been modified ourside of vim
