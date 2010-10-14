@@ -38,6 +38,9 @@ set backspace=eol,start,indent " allow backspacing over everything in insert mod
 " make ; the same as : in normal mode - saves a few keystrokes!
 nnoremap ; :
 
+" Q = format
+map Q gq
+
 " clear highlighted searches
 nmap <silent> ,/ :nohlsearch<CR>
 
