@@ -8,6 +8,10 @@ augroup filetypedetect
     " Jamfiles
     au BufNewFile,BufRead Jamfile,Jamrules      setfiletype jam
 
+    " SCons
+    au BufNewFile,BufRead SConscript,SConstruct setfiletype python
+
     " Octave files
     au BufNewFile,BufRead *.m                   setfiletype octave
+
 augroup END
