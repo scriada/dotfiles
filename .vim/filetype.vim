@@ -11,6 +11,9 @@ augroup filetypedetect
     " SCons
     au BufNewFile,BufRead SConscript,SConstruct setfiletype python
 
+    " Text files
+    au BufNewFile,BufRead *.txt                 setfiletype txt
+
     " Octave files
     au BufNewFile,BufRead *.m                   setfiletype octave
 
