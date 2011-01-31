@@ -25,11 +25,11 @@
     ci = commit
     co = checkout
     br = branch
-    mt = mergetool
+    mt = mergetool --no-prompt
     unstage = reset HEAD --
-    p4merge = mergetool --no-prompt --tool=p4merge  
-    vmerge  = mergetool --no-prompt --tool=gvimdiff 
-    vdiff   = difftool  --no-prompt --tool=vimdiff
+    vdiff = difftool  --no-prompt --tool=vimdiff
+    vlog = log --name-status
+    unstage = reset HEAD --
 [merge]
 	tool = vimdiff
 [ui]
