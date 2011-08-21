@@ -28,3 +28,18 @@ function epub()
 {
     rm -f $@; zip -q0X $@ mimetype; zip -qXr9D $@ *
 }
+
+# Clear screen, but without moving the cursor to the top
+function c()
+{
+    printf "\33[2J"
+}
+
+# Simulate keyboard typing a message
+termsay () 
+{ 
+    if [ $# -eq 0 ];      then return;
+    elif [ "$1" == '-' ]; then pv -qL 10 <&0  # pipe from stdin
+    else                  echo $@ | pv -qL 10 # use args
+    fi
+}
