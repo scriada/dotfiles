@@ -12,7 +12,12 @@ require("debian.menu")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+-- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+-- beautiful.init("/home/adam/.config/awesome/themes/dunzor/theme.lua")
+-- beautiful.init("/usr/share/awesome/themes/blue/theme.lua")
+-- beautiful.init("/home/adam/.config/awesome/themes/zenburn-red/theme.lua")
+-- beautiful.init("/home/adam/.config/awesome/themes/zenburn-custom/theme.lua")
+beautiful.init("/home/adam/.config/awesome/themes/bamboo/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -59,13 +64,15 @@ myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
    { "restart", awesome.restart },
-   { "quit", awesome.quit }
+   { "logoff", awesome.quit },
+   { "shutdown", "sudo shutdown now"}
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Ubuntu", debian.menu.Debian_menu.Debian },
                                     { "open terminal", terminal }
-                                  }
+                                  },
+                          width=150
                         })
 
 mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
@@ -292,6 +299,7 @@ awful.rules.rules = {
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
                      focus = true,
+                     size_hints_honor = false,
                      keys = clientkeys,
                      buttons = clientbuttons } },
     { rule = { class = "MPlayer" },
