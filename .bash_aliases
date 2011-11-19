@@ -11,6 +11,8 @@ alias dush="du -sm *|sort -n|tail"    # find large files/directories
 alias untar='tar -xvf'                # most common kind of untar command
 alias go='gnome-open'                 # launch any file with its default application
 alias citrix='/usr/lib/ICAClient.11/wfica.sh'
+alias pgrep='pgrep -l'                # make pgrep show process name by default
+alias hacktime='killall metacity && awesome & disown' # replace metacity with awesome
 
 # xargs vim : lets you start vim with piped arguments
 xvim() {
