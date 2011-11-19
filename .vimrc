@@ -21,9 +21,13 @@ set mouse=a         " enable mouse
 set shortmess+=I    " hide welcome message
 set history=500     " more history
 set laststatus=2    " always display status menu
-set statusline=%F%m%r%h%w\ (%Y)\ %=\ (%l/%L)\ [%p%%]
+set statusline=%f%m%r%h%w\ (%Y)\ %=\ (%l/%L)\ [%p%%]
 syntax on
 filetype plugin indent on
+
+if has("win32")
+    set clipboard+=unnamed
+endif
 
 " Global editing settings -------------------------------------------
 set autoindent       " automatically indent line
@@ -79,11 +83,11 @@ fun! s:NFH_html(pagefile)
 endfun
 
 " GUI settings ------------------------------------------------------
-if $TERM == "linux"
+if $TERM == "linux" || $TERM == "screen"
     " For a linux console, disable CSApprox
     let g:CSApprox_loaded=1
 endif
 colorscheme wombat
 
 " highlight trailing whitespace as an error
-au Syntax * syntax match Error /\s\+\%#\@<!$/ containedin=ALL
+"au Syntax * syntax match Error /\s\+\%#\@<!$/ containedin=ALL
