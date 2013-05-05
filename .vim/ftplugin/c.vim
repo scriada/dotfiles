@@ -12,6 +12,10 @@ setlocal foldnestmax=10    " 10 levels max
 setlocal foldlevel=10      " start at the top level
 setlocal nofoldenable      " disable fold be default
 
+" surround
+let b:surround_45 = "/*\r*/"
+let b:surround_61 = "/*\r*/"
+
 " local keybindings ---------------------------
 
 " magic enumeration converter
