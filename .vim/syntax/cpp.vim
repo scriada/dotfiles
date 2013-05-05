@@ -39,6 +39,9 @@ syn keyword cppBoolean		true false
 " The minimum and maximum operators in GNU C++
 syn match cppMinMax "[<>]?"
 
+" A namespace or class 
+syn match cppBelongs /\<[a-zA-Z_0-9]*\>::/
+
 " Default highlighting
 if version >= 508 || !exists("did_cpp_syntax_inits")
   if version < 508
@@ -57,6 +60,7 @@ if version >= 508 || !exists("did_cpp_syntax_inits")
   HiLink cppType		Type
   HiLink cppStorageClass	StorageClass
   HiLink cppStructure		Structure
+  HiLink cppBelongs             Special
   HiLink cppNumber		Number
   HiLink cppBoolean		Boolean
   delcommand HiLink
