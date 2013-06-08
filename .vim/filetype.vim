@@ -17,4 +17,7 @@ augroup filetypedetect
     " Octave files
     au BufNewFile,BufRead *.m                   setfiletype octave
 
+    " Inform7 file
+    au BufNewFile,BufRead *.ni                  setfiletype inform7
+
 augroup END
