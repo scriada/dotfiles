@@ -62,12 +62,6 @@ map <silent> <unique> <F5> :BufExplorerHorizontalSplit<CR>
 
 " Plugins --------------------------------------------------------------
 
-" BufExplorer
-let g:bufExplorerDefaultHelp = 0
-let g:bufExplorerSplitBelow = 1
-let g:bufExplorerOpenMode = 0
-let g:bufExplorerSplitSize = 15
-
 " Doxygen
 let g:load_doxygen_syntax=1
 
@@ -88,6 +82,3 @@ if $TERM == "linux" || $TERM == "screen"
     let g:CSApprox_loaded=1
 endif
 colorscheme wombat
-
-" highlight trailing whitespace as an error
-"au Syntax * syntax match Error /\s\+\%#\@<!$/ containedin=ALL
