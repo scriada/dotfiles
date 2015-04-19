@@ -43,7 +43,9 @@ if v:version < 700
 	finish
 endif
 
-runtime plugin/vcscommand.vim
+if !exists('g:loaded_VCSCommand')
+	runtime plugin/vcscommand.vim
+endif
 
 if !executable(VCSCommandGetOption('VCSCommandSVKExec', 'svk'))
 	" SVK is not installed
@@ -104,7 +106,7 @@ endfunction
 " Function: s:svkFunctions.Annotate(argList) {{{2
 function! s:svkFunctions.Annotate(argList)
 	if len(a:argList) == 0
-		if &filetype == 'SVKannotate'
+		if &filetype ==? 'svkannotate'
 			" Perform annotation of the version indicated by the current line.
 			let caption = matchstr(getline('.'),'\v^\s+\zs\d+')
 			let options = ' -r' . caption
@@ -122,7 +124,7 @@ function! s:svkFunctions.Annotate(argList)
 
 	let resultBuffer = s:DoCommand('blame' . options, 'annotate', caption, {})
 	if resultBuffer > 0
-		normal 1G2dd
+		normal! 1G2dd
 	endif
 	return resultBuffer
 endfunction
