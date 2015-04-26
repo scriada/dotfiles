@@ -48,4 +48,6 @@ hi PreProc 		guifg=#e5786d gui=none
 hi Number		guifg=#e5786d gui=none
 hi Special		guifg=#e7f6da gui=none
 
-
+"EasyMotion colors
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment

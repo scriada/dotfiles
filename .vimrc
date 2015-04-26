@@ -76,6 +76,8 @@ fun! s:NFH_html(pagefile)
     return 1
 endfun
 
+let g:EasyMotion_leader_key = '<Leader>'
+
 " GUI settings ------------------------------------------------------
 if $TERM == "linux" || $TERM == "screen"
     " For a linux console, disable CSApprox
