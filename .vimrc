@@ -36,6 +36,8 @@ set smarttab         " insert tabs on the start of a line according to shidtwidt
 set tabstop=4        " set tab to 4 spaces
 set shiftwidth=4     " number of space to use for auto-indenting
 set backspace=eol,start,indent " allow backspacing over everything in insert mode
+set nojoinspaces     " when joining lines, don't put 2 spaces after a full stop.
+
 
 " Key bindings ---------------------------------------------------------
 
