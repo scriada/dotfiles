@@ -64,6 +64,23 @@ map <silent> <unique> <F5> :BufExplorerHorizontalSplit<CR>
 
 " Plugins --------------------------------------------------------------
 
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'vim-scripts/vcscommand.vim'
+Plugin 'vim-scripts/DoxygenToolkit.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'msanders/snipmate.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'rking/ag.vim'
+call vundle#end()
+filetype plugin indent on
+
+
 " Doxygen
 let g:load_doxygen_syntax=1
 
@@ -79,6 +96,13 @@ fun! s:NFH_html(pagefile)
 endfun
 
 let g:EasyMotion_leader_key = '<Leader>'
+
+let g:flake8_show_in_file=1  " show
+let g:flake8_show_in_gutter=0  " show
+let g:flake8_show_quickfix=0
+let g:syntastic_python_checkers = ['flake8']
+
+let g:jedi#popup_on_dot = 0
 
 " GUI settings ------------------------------------------------------
 if $TERM == "linux" || $TERM == "screen"
