@@ -21,16 +21,28 @@
     changed = green
     untracked = cyan
 [alias]
-    st = status
+    st = status -sb -uno
     ci = commit
     co = checkout
     br = branch
     mt = mergetool --no-prompt
     unstage = reset HEAD --
+
+    lstash = !git --no-pager stash list
+    unstage = reset HEAD --
+
     vdiff = difftool  --no-prompt --tool=vimdiff
     vlog = log --name-status
-    unstage = reset HEAD --
+    slog = !git --no-pager log --oneline
+    hist = log --graph --oneline  --decorate
+    histl = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+ 
+    # Push the current branch to the remote "origin", and set it to track the upstream branch
+    publish = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
+
+    # diff against the tracked remote branch
+    diff-orig = "!git diff origin/$(git rev-parse --abbrev-ref HEAD)"
 [merge]
 	tool = vimdiff
 [ui]
-	color = true
+    color = true
