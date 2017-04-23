@@ -73,6 +73,12 @@ fi
 # reduce mode-switch to 10ms
 export KEYTIMEOUT=1
 
+# configure dircolors
+
+if [ -f ~/.dir_colors/dircolors ]
+    then eval `dircolors ~/.dir_colors/dircolors`
+fi
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
