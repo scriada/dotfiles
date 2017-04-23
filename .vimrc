@@ -23,6 +23,7 @@ set mouse=a         " enable mouse
 set shortmess+=I    " hide welcome message
 set history=500     " more history
 set laststatus=2    " always display status menu
+set clipboard=unnamedplus " use system clipboard
 set statusline=%f%m%r%h%w\ (%Y)\ %=\ (%l/%L)\ [%p%%]
 set timeoutlen=1000 ttimeoutlen=0 " avoid delay in ESC key
 syntax on
@@ -41,6 +42,7 @@ set tabstop=4        " set tab to 4 spaces
 set shiftwidth=4     " number of space to use for auto-indenting
 set backspace=eol,start,indent " allow backspacing over everything in insert mode
 set nojoinspaces     " when joining lines, don't put 2 spaces after a full stop.
+set noeol
 
 
 " Key bindings ---------------------------------------------------------
@@ -50,6 +52,9 @@ nnoremap ; :
 
 " Q = format
 map Q gq
+
+" disable F1 key, as I often press this my mistake
+nmap <F1> <nop>
 
 " clear highlighted searches
 nmap <silent> ,/ :nohlsearch<CR>
@@ -83,6 +88,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
+Plugin 'janko-m/vim-test'
 " colour schemes
 Plugin 'sheerun/vim-wombat-scheme'
 Plugin 'altercation/vim-colors-solarized'
@@ -122,6 +128,10 @@ let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_javascript_checkers = ['jshint']
 
 let g:jedi#popup_on_dot = 0
+let g:jedi#show_call_signatures = 2 " show signature in cmd window
+
+" dispatching
+let test#strategy = "dispatch"
 
 " GUI settings ------------------------------------------------------
 
