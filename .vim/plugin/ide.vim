@@ -25,7 +25,8 @@ endfunction
 
 function! s:IPythonPaste() range
     " copy the current visual selection into the system (+) buffer
-    normal! gv"+y
+    execute(a:firstline .",". a:lastline ."y+")
+    call cursor(a:lastline+1, 0) " move to next line
     call s:TmuxSend(g:ide_ipython_pane_id, '%paste')
 endfunction 
 
@@ -51,5 +52,6 @@ endfunction
 
 command -nargs=0 IPythonShell :call <SID>IPythonShell(<f-args>)
 command -nargs=0 IPythonRun   :call <SID>IPythonRun(<f-args>)
+command -nargs=0 -range IPythonPaste :<line1>,<line2>call <SID>IPythonPaste(<f-args>)
 
-vmap <silent> <C-x> :call <SID>IPythonPaste()<CR>
+map <silent> <C-x> :IPythonPaste<CR>
