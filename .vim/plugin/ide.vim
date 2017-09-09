@@ -9,6 +9,7 @@ endif
   
 let g:ide_loaded = 1
 let g:ide_ipython_pane_id = -1
+let g:ide_buffer_file = "/tmp/_tmux_ide_buffer.txt"
 
 " generic function to send-keys to a tmux pand
 function! s:TmuxSend(id, cmd)
@@ -24,10 +25,12 @@ function! s:TmuxPanes()
 endfunction
 
 function! s:IPythonPaste() range
-    " copy the current visual selection into the system (+) buffer
-    execute(a:firstline .",". a:lastline ."y+")
+    let lines = getline(a:firstline, a:lastline) " get the current visual selection
     call cursor(a:lastline+1, 0) " move to next line
-    call s:TmuxSend(g:ide_ipython_pane_id, '%paste')
+    call writefile(lines + ["--"], g:ide_buffer_file) " write to file
+    call s:TmuxSend(g:ide_ipython_pane_id, "%cpaste -q")
+    let ret = system("tmux load-buffer ". g:ide_buffer_file)
+    let ret = system("tmux paste-buffer -d -t %". g:ide_ipython_pane_id)
 endfunction 
 
 " Create an IPython shell in a new pane, if one doesnt already exist
