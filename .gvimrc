@@ -5,11 +5,9 @@ set guioptions-=m  " hide menubar
 set vb t_vb=""     " disable visual bell
 
 if has("win32")
-    "set guifont=Monospace:h9
-    set guifont=Consolas:h10
+    set guifont=Monospace:h9
 else
-    "set guifont=Monospace\ 9
-    set guifont=Consolas\ 10
+    set guifont=Monospace\ 9
 endif
 
 " make cursor red while in insert mode
