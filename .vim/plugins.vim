@@ -39,9 +39,14 @@ let g:EasyMotion_leader_key = '<Leader>'
 let g:flake8_show_in_file=1  " show
 let g:flake8_show_in_gutter=0  " show
 let g:flake8_show_quickfix=0
-let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_checkers = ['flake8', 'pyflakes']
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
+let g:jedi#force_py_version = 3
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = 2 " show signature in cmd window
 

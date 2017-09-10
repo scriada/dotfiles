@@ -24,8 +24,9 @@ set shortmess+=I    " hide welcome message
 set history=500     " more history
 set laststatus=2    " always display status menu
 set clipboard=unnamedplus " use system clipboard
-set statusline=%f%m%r%h%w\ (%Y)\ %=\ (%l/%L)\ [%p%%]
+set statusline=[%{virtualenv#statusline()}]\ %f%m%r%h%w\ (%Y)\ %=\ (%l/%L)\ [%p%%]
 set timeoutlen=1000 ttimeoutlen=0 " avoid delay in ESC key
+set listchars=trail:~,tab:->,eol:$,space:·
 syntax on
 filetype plugin indent on
 
