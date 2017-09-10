@@ -1,0 +1,6 @@
+# View
+set git-colors = yes
+
+# keybindings
+bind status     D   !@?rm %(file)   # Delete file
+bind generic    e   edit            # Open in editor
