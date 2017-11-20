@@ -79,6 +79,9 @@ if [ -f ~/.dir_colors/dircolors ]
     then eval `dircolors ~/.dir_colors/dircolors`
 fi
 
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 

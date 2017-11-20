@@ -99,13 +99,9 @@ endif
 set ttyfast
 set lazyredraw
 
-colorscheme wombat
-
-"let g:solarized_termcolors=256
-"let g:solarized_termtrans=1
-"set background=dark
-"colorscheme solarized
-
-"set background=dark
-"let base16colorspace=256
-"colorscheme base16-solarized
+if filereadable(expand("~/.vimrc_background"))
+    let base16colorspace=256
+    source ~/.vimrc_background
+else
+    colorscheme wombat
+endif
