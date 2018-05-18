@@ -19,5 +19,8 @@ augroup filetypedetect
 
     " Inform7 file
     au BufNewFile,BufRead *.ni                  setfiletype inform7
+    
+    " config files
+    au BufNewFile,BufRead *.conf                 setfiletype conf
 
 augroup END
