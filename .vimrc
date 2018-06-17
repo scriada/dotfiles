@@ -69,6 +69,9 @@ nmap <silent> [1;2D :tabprev<CR>
 nmap <silent> d[ :diffget 1<CR>
 nmap <silent> d] :diffget 3<CR>
 
+" Ctrl-] to search for search under cursor
+nmap <silent> <C-]> :Ag <cword> <CR>
+
 " F5 to view files in bufexplorer
 map <silent> <unique> <F5> :BufExplorerHorizontalSplit<CR>
 

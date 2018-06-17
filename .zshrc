@@ -57,6 +57,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 alias tmux='tmux -2' # support 256 colour
+alias tig='tig status'
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,10 +86,15 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+
+# Haskell stack autocomplete
+autoload -U +X bashcompinit && bashcompinit
+eval "$(stack --bash-completion-script stack)"
+
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# Ctrl k/j to search history up/down
-bindkey -M viins "^k" history-beginning-search-backward
-bindkey -M viins "^j" history-beginning-search-forward
+# Ctrl p/n to search history up/down
+bindkey -M viins "^p" history-beginning-search-backward
+bindkey -M viins "^n" history-beginning-search-forward
 bindkey -M viins "\e." insert-last-word
