@@ -1,6 +1,6 @@
 [user]
-	name = Adam Scriven
-	email = adam.scriven+github@gmail.com
+    name = Adam Scriven
+    email = adam.scriven+github@gmail.com
 
 [color]
     ui = auto
@@ -43,6 +43,8 @@
     # diff against the tracked remote branch
     diff-orig = "!git diff origin/$(git rev-parse --abbrev-ref HEAD)"
 [merge]
-	tool = vimdiff
+    tool = vimdiff
 [ui]
     color = true
+[push]
+    default = simple
