@@ -34,6 +34,9 @@ if has("win32")
     set clipboard+=unnamed
 endif
 
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+endif
 
 " Global editing settings -------------------------------------------
 set autoindent       " automatically indent line
