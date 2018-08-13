@@ -23,4 +23,6 @@ augroup filetypedetect
     " config files
     au BufNewFile,BufRead *.conf                 setfiletype conf
 
+    au BufRead,BufNewFile *.vue                 setlocal filetype=vue.html.javascript.css
+
 augroup END
