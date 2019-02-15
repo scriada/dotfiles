@@ -8,6 +8,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-scripts/QuickBuf'
+Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'honza/vim-snippets'
 
 " Language
