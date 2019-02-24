@@ -111,3 +111,5 @@ if filereadable(expand("~/.vimrc_background"))
 else
     colorscheme wombat
 endif
+
+hi SpellBad cterm=underline ctermfg=black
