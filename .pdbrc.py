@@ -1,5 +1,6 @@
 from pdb import DefaultConfig
 
+
 class Config(DefaultConfig):
     """
     Configuration for pdb++
@@ -10,5 +11,3 @@ class Config(DefaultConfig):
     encoding = 'ascii'
     current_line_color = 7
     sticky_by_default = True
-
-
