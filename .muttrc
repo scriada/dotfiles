@@ -7,10 +7,14 @@ set charset = "utf-8"
 set editor = "vim"
 set sort = threads
 set sort_aux = reverse-date-received
-set alias_file       = ~/.mutt/aliases
+
 set certificate_file = ~/.mutt/cert
 set header_cache     = ~/.mutt/headers
 set message_cachedir = ~/.mutt/bodies
+
+set alias_file = ~/.mutt/aliases
+set sort_alias = alias
+source $alias_file
 
 source ~/.mutt/gmail_setup
 
