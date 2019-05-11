@@ -60,7 +60,10 @@ let test#strategy = "dispatch"
 Plugin 'w0rp/ale'
 let g:ale_linters = {
 \  'javascript': ['eslint'],
-\  'python': ['flake8', 'pyflakes'],
+\  'typescript': ['eslint'],
+\  'java': ['javac'],
+\  'python': ['flake8', 'pyflakes', 'mypy'],
+\  'haskell': ['stack_ghc'],
 \}
 let g:ale_linters_explicit = 1
 let g:ale_virtualenv_dir_names= [] " stop ale recursing up the directory looking for virtual envs
