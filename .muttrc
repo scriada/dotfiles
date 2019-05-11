@@ -46,6 +46,7 @@ macro index,pager gm "<change-folder>=[Google%20Mail]/Important<enter>" "Go to i
 macro index,pager gs "<change-folder>=[Google%20Mail]/Starred<enter>" "Go to starred messages"
 macro index,pager gt "<change-folder>=[Google%20Mail]/Trash<enter>" "Go to Trash"
 macro index,pager y  "<save-message>=[Google%20Mail]/All%20Mail<enter>" "Archive message"
+macro index,pager s  "<save-message>=" "save message"
 
 macro index,pager    \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
 macro attach,compose \cb "<pipe-entry> urlscan<Enter>"   "call urlscan to extract URLs out of a message"
