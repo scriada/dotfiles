@@ -24,6 +24,8 @@ source $alias_file
 source ~/.mutt/gmail_setup
 
 # Set up preview pane for messages
+auto_view text/html             # auto convert text/html MIME type to text/plain
+alternative_order text/plain text/enriched text/html # view html last
 set pager_index_lines   = 10    # number of index lines to show
 set pager_context       = 3     # number of context lines to show
 set pager_stop          = yes   # don't go to next message automatically
