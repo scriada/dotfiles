@@ -15,6 +15,7 @@ unset confirmappend # don't ask for comfirmation to append a message to an exist
 set certificate_file = ~/.mutt/cert
 set header_cache     = ~/.mutt/headers
 set message_cachedir = ~/.mutt/bodies
+set mailcap_path     = ~/.mutt/mailcap
 
 set alias_file = ~/.mutt/aliases
 set sort_alias = alias
