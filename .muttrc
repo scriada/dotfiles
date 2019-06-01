@@ -3,10 +3,11 @@ set edit_headers = yes
 set envelope_from = yes
 set ssl_force_tls = yes
 set use_from = yes
-set charset = "utf-8"
-set editor = "vim"
+set charset = utf-8
+set editor = vim
 set sort = threads
 set sort_aux = reverse-date-received
+set sleep_time = 0 # speed up folder switch
 set text_flowed = yes
 set delete # don't ask for confirmation to delete mails
 set index_format = "%4C %Z [%{%b %d %H:%M}] %-15.15L (%?l?%4l&%4c?) %s"
@@ -24,29 +25,34 @@ source $alias_file
 source ~/.mutt/gmail_setup
 
 # Set up preview pane for messages
-auto_view text/html             # auto convert text/html MIME type to text/plain
-alternative_order text/plain text/enriched text/html # view html last
 set pager_index_lines   = 10    # number of index lines to show
 set pager_context       = 3     # number of context lines to show
 set pager_stop          = yes   # don't go to next message automatically
 set menu_scroll         = yes   # scroll in menus
 set tilde               = yes   # show tildes like in vim
 set markers             = no    # no ugly plus signs
+#
+# Viewing preferences
+auto_view         text/html     # auto convert text/html MIME type to text/plain
+#alternative_order text/plain text/enriched text/html # view html last
+alternative_order text/html text/plain text/enriched # view html last
+
 
 # scroll inside the message rather than the index
 bind pager <up>   previous-line
 bind pager <down> next-line
+bind pager <space> next-page
 
 # Gmail bindings
 bind index G imap-fetch-mail
 macro index,pager ga "<change-folder>=[Google%20Mail]/All%20Mail<enter>" "Go to All Mail"
-macro index,pager gd "<change-folder>=[Google%20Mail]/Drafts<enter>" "Go to Drafts"
-macro index,pager gi "<change-folder>=INBOX<enter>" "Go to Inbox"
-macro index,pager gm "<change-folder>=[Google%20Mail]/Important<enter>" "Go to important messages"
-macro index,pager gs "<change-folder>=[Google%20Mail]/Starred<enter>" "Go to starred messages"
-macro index,pager gt "<change-folder>=[Google%20Mail]/Trash<enter>" "Go to Trash"
-macro index,pager y  "<save-message>=[Google%20Mail]/All%20Mail<enter>" "Archive message"
-macro index,pager s  "<save-message>=" "save message"
+macro index,pager gd "<change-folder>=[Google%20Mail]/Drafts<enter>"     "Go to Drafts"
+macro index,pager gi "<change-folder>=INBOX<enter>"                      "Go to Inbox"
+macro index,pager gm "<change-folder>=[Google%20Mail]/Important<enter>"  "Go to important messages"
+macro index,pager gs "<change-folder>=[Google%20Mail]/Starred<enter>"    "Go to starred messages"
+macro index,pager gt "<change-folder>=[Google%20Mail]/Trash<enter>"      "Go to Trash"
+macro index,pager y  "<save-message>=[Google%20Mail]/All%20Mail<enter>"  "Archive message"
+macro index,pager s  "<save-message>="                                   "Send message to folder"
 
 macro index,pager    \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
 macro attach,compose \cb "<pipe-entry> urlscan<Enter>"   "call urlscan to extract URLs out of a message"
