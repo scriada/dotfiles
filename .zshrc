@@ -58,6 +58,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 alias tmux='tmux -2' # support 256 colour
 alias tig='tig status'
+alias cat='bat'
 
 source $ZSH/oh-my-zsh.sh
 
