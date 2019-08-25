@@ -50,6 +50,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 "let g:jedi#show_call_signatures = 2 " show signature in cmd window
 
 Plugin 'Valloric/YouCompleteMe'
+let g:ycm_filetype_blacklist = { 'vue.html.javascript.css': 1 }
 nmap <silent> <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nmap <silent> <leader>k :YcmCompleter GetDoc<CR>
 
@@ -61,6 +62,7 @@ Plugin 'w0rp/ale'
 let g:ale_linters = {
 \  'javascript': ['eslint'],
 \  'typescript': ['eslint'],
+\  'vue': ['eslint', 'vls'],
 \  'java': ['javac'],
 \  'python': ['flake8', 'pyflakes', 'mypy'],
 \  'haskell': ['stack_ghc'],
