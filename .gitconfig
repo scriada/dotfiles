@@ -40,8 +40,14 @@
     # Push the current branch to the remote "origin", and set it to track the upstream branch
     publish = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
 
+    # remove all branches that have been merged
+    rmerged = "! git branch --merged | egrep -v '(^\\*|master)' | xargs git branch -d"
+
     # diff against the tracked remote branch
     diff-orig = "!git diff origin/$(git rev-parse --abbrev-ref HEAD)"
+
+    # amend without editing the commit messahe
+    amend = commit --amend --no-edit
 [merge]
     tool = vimdiff
 [ui]
