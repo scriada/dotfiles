@@ -58,7 +58,14 @@ macro index,pager    \cb "<pipe-message> urlscan<Enter>" "call urlscan to extrac
 macro attach,compose \cb "<pipe-entry> urlscan<Enter>"   "call urlscan to extract URLs out of a message"
 
 # colors
-color status black magenta
-color index  red   default "~D(!~p|~p)" # deleted
-color index  green default "~F"         # flagged
-color index  blue  default "~N"         # new messages
+color status     black       magenta
+color index      red         default "~D(!~p|~p)" # deleted
+color index      green       default "~F"         # flagged
+color index      blue        default "~N"         # new messages
+color header     brightgreen default ".*"
+color attachment brightblack black
+color body       brightred   default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+"          # Email addresses
+color body       brightblue  default "(https?|ftp)://[\-\.,/%~\+_:?&=\#a-zA-Z0-9]+" # URL
+
+
+
