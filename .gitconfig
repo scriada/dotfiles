@@ -50,7 +50,13 @@
     amend = commit --amend --no-edit
 [merge]
     tool = vimdiff
+    # only perform a merge if it can be fast forwarded
+    ff = only
 [ui]
     color = true
 [push]
     default = simple
+[pull]
+    rebase = true
+[clean]
+    requireForce = true
