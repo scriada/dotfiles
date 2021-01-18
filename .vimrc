@@ -80,8 +80,10 @@ map <silent> <unique> <F5> :BufExplorerHorizontalSplit<CR>
 
 " Plugins --------------------------------------------------------------
 
-" Vundle plugins
+" Plugins
+call plug#begin('~/.vim/bundle')
 source ~/.vim/plugins.vim
+call plug#end()
 
 " netrw handler for opening html links
 fun! s:NFH_html(pagefile)

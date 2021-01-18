@@ -53,6 +53,14 @@ function! s:IPythonRun()
     call s:TmuxSend(g:ide_ipython_pane_id, "%run ". file)
 endfunction 
 
+" Load disabled heavyweight plugins used for IDE
+function! s:LoadIDE()
+    call plug#load('YouCompleteMe')
+    call plug#load('ale')
+endfunction 
+
+
+command -nargs=0 LoadIDE      :call <SID>LoadIDE(<f-args>)
 command -nargs=0 IPythonShell :call <SID>IPythonShell(<f-args>)
 command -nargs=0 IPythonRun   :call <SID>IPythonRun(<f-args>)
 command -nargs=0 -range IPythonPaste :<line1>,<line2>call <SID>IPythonPaste(<f-args>)
