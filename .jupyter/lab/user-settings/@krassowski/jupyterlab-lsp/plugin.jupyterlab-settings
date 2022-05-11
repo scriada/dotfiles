@@ -1,0 +1,32 @@
+{
+    pyls: {
+        serverSettings: {
+            pyls: {
+                plugins: {
+                    pydocstyle: {
+                      enabled: false
+                    },
+                    pyflakes: {
+                      enabled: false
+                    },
+                    flake8: {
+                      enabled: false
+                    }
+                }
+            },
+            pylsp: {
+                plugins: {
+                    pydocstyle: {
+                        enabled: false
+                    },
+                    pyflakes: {
+                        enabled: false
+                    },
+                    flake8: {
+                        enabled: false
+                    }
+                }
+            }
+        }
+    }
+}

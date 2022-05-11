@@ -1,0 +1,18 @@
+{
+    // Quick Open
+    // @parente/jupyterlab-quickopen:plugin
+    // Quick open panel settings
+    // ************************************
+
+    // Exclude Patterns
+    // File and directory patterns to exclude from the list
+    "excludes": [
+        "node_modules",
+        "__pycache__",
+        ".git"
+    ],
+
+    // Relative Search
+    // Whether to search from currently selected directory
+    "relativeSearch": true
+}

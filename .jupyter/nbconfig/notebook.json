@@ -1,0 +1,8 @@
+{
+  "Notebook": {
+    "Header": false
+  },
+  "load_extensions": {
+    "jupyter-js-widgets/extension": true
+  }
+}

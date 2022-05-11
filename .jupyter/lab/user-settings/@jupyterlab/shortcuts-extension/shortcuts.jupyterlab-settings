@@ -1,0 +1,71 @@
+{
+    "shortcuts": [
+        // show/hide cell outoputs
+        {
+            "command": "notebook:hide-cell-outputs",
+            "keys": [
+                "["
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "command": "notebook:show-cell-outputs",
+            "keys": [
+                "]"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "command": "quickopen:activate",
+            "keys": ["Accel Ctrl P"],
+            "selector": "body",
+            "title": "Activate Quick Open",
+            "category": "Main Area"
+        },
+        {
+            "command": "filebrowser:toggle-main",
+            "keys": [
+                "Accel Shift T"
+            ],
+            "selector": "body"
+        },
+        // Vim: both Esc and Ctrl-C leave vim insert mode
+        {
+            "selector": ".jp-NotebookPanel[data-jp-vim-mode='true'] .jp-Notebook.jp-mod-editMode",
+            "keys": [
+                "Ctrl C"
+            ],
+            "command": "vim:leave-insert-mode"
+        },
+        {
+            "selector": ".jp-NotebookPanel[data-jp-vim-mode='true'] .jp-Notebook.jp-mod-editMode",
+            "keys": [
+                "Escape"
+            ],
+             "command": "vim:leave-insert-mode"
+        },
+        // Vim: Ctrl-[ and Ctrl-0 switch to command mode
+        {
+            "selector": ".jp-NotebookPanel[data-jp-vim-mode='true'] .jp-Notebook.jp-mod-editMode",
+            "keys": [
+                "Ctrl 0"
+            ],
+            "command": "notebook:enter-command-mode"
+        },
+        {
+            "selector": ".jp-NotebookPanel[data-jp-vim-mode='true'] .jp-Notebook.jp-mod-editMode",
+            "keys": [
+                "Ctrl ["
+            ],
+            "command": "notebook:enter-command-mode"
+        },
+        // vim: When executing a cell in edit mode, switch back to command mode on next cell
+         {
+            "selector": ".jp-NotebookPanel[data-jp-vim-mode='true'] .jp-Notebook.jp-mod-editMode",
+            "keys": [
+                "Shift Enter"
+            ],
+            "command": "notebook:run-cell-and-select-next"
+        },
+    ]
+}
