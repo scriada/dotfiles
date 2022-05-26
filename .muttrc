@@ -2,13 +2,16 @@
 set edit_headers = yes
 set envelope_from = yes
 set ssl_force_tls = yes
+set ssl_starttls = yes
 set use_from = yes
 set charset = utf-8
 set editor = vim
 set sort = threads
 set sort_aux = reverse-date-received
 set sleep_time = 0 # speed up folder switch
+set text_flowed
 set text_flowed = yes
+set crypt_use_gpgme = yes # allow use of gpg2
 set delete # don't ask for confirmation to delete mails
 set index_format = "%4C %Z [%{%b %d %H:%M}] %-15.15L (%?l?%4l&%4c?) %s"
 unset confirmappend # don't ask for comfirmation to append a message to an existing mailbox
@@ -17,6 +20,7 @@ set certificate_file = ~/.mutt/cert
 set header_cache     = ~/.mutt/headers
 set message_cachedir = ~/.mutt/bodies
 set mailcap_path     = ~/.mutt/mailcap
+
 
 set alias_file = ~/.mutt/aliases
 set sort_alias = alias
@@ -35,13 +39,16 @@ set markers             = no    # no ugly plus signs
 # Viewing preferences
 auto_view         text/html     # auto convert text/html MIME type to text/plain
 #alternative_order text/plain text/enriched text/html # view html last
-alternative_order text/html text/plain text/enriched # view html last
+alternative_order text/html text/plain text/enriched
 
 
 # scroll inside the message rather than the index
 bind pager <up>   previous-line
 bind pager <down> next-line
 bind pager <space> next-page
+bind pager p previous-page
+bind pager J next-page
+bind pager K previous-page
 
 # Gmail bindings
 bind index G imap-fetch-mail
@@ -62,6 +69,7 @@ color status     black       magenta
 color index      red         default "~D(!~p|~p)" # deleted
 color index      green       default "~F"         # flagged
 color index      blue        default "~N"         # new messages
+color index      yellow      default "~T"         # tagged message
 color header     brightgreen default ".*"
 color attachment brightblack black
 color body       brightred   default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+"          # Email addresses

@@ -1,5 +1,7 @@
-text/html; w3m -I %{charset} -T text/html; copiousoutput;
+text/html; w3m -dump -cols 120 -config ~/.mutt/w3m-config -I %{charset} -T text/html; copiousoutput;
 image/*; eog %s
+video/*; vlc %s
 application/pdf; evince %s
+application/x-zip-compressed; file-roller %s
 application/vnd.openxmlformats-officedocument.wordprocessingml.document; soffice --nologo --writer %s > /dev/null 2>&1
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; soffice --nologo --calc %s > /dev/null 2>&1
