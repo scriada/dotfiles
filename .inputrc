@@ -10,3 +10,7 @@ set editing-mode vi
 
 # Alt-. to yank last arguments
 "\e.": yank-last-arg
+
+# tab completion shows menu and cycles through matches
+set show-all-if-ambiguous on
+TAB: menu-complete
