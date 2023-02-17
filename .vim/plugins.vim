@@ -59,12 +59,20 @@ let g:EasyMotion_leader_key = '<Leader>'
 "let g:jedi#popup_on_dot = 0
 "let g:jedi#show_call_signatures = 2 " show signature in cmd window
 
-Plug 'Valloric/YouCompleteMe', { 'on': [] }
+Plug 'Valloric/YouCompleteMe', { 'on': ['YcmCompleter'] }
+let g:ycm_auto_trigger = 0
+let g:ycm_auto_hover=''
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_filetype_blacklist = {
 \  'vue.html.javascript.css': 1,
 \  'markdown': 1,
 \  'txt': 1,
 \  'inform': 1,
+\}
+let g:ycm_filetype_specific_completion_to_disable = {
+\   'gitcommit': 1,
+\   'txt': 1,
 \}
 nmap <silent> <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nmap <silent> <leader>k :YcmCompleter GetDoc<CR>
@@ -77,7 +85,7 @@ let test#python#runner = 'pytest'
 Plug 'w0rp/ale', { 'on': [] }
 let g:ale_linters = {
 \  'javascript': ['eslint'],
-\  'typescript': ['eslint'],
+\  'typescript': ['eslint', 'tslint'],
 \  'vue': ['eslint', 'vls'],
 \  'java': ['javac'],
 \  'python': ['flake8', 'pyflakes', 'mypy'],
