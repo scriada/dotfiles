@@ -53,6 +53,11 @@ function! s:IPythonRun()
     call s:TmuxSend(g:ide_ipython_pane_id, "%run ". file)
 endfunction 
 
+function! s:update_status()
+    set statusline=[%{virtualenv#statusline()}]\ %f%m%r%h%w\ (%Y)\ %=\ (%l/%L)\ [%p%%]
+endfun
+
+
 " Load disabled heavyweight plugins used for IDE
 function! s:LoadIDE(...)
     call plug#load('YouCompleteMe')
@@ -65,6 +70,7 @@ function! s:LoadIDE(...)
     if venv != ""
         execute 'VirtualEnvActivate '. venv
     endif
+    call s:update_status()
 
 endfunction 
 
