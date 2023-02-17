@@ -54,15 +54,28 @@ function! s:IPythonRun()
 endfunction 
 
 " Load disabled heavyweight plugins used for IDE
-function! s:LoadIDE()
+function! s:LoadIDE(...)
     call plug#load('YouCompleteMe')
     call plug#load('ale')
+    call plug#load('ale')
+    call plug#load('ultisnips')
+    call plug#load('vim-snippets')
+
+    let venv = get(a:, 1, "")
+    if venv != ""
+        execute 'VirtualEnvActivate '. venv
+    endif
+
 endfunction 
 
 
-command -nargs=0 LoadIDE      :call <SID>LoadIDE(<f-args>)
+command -nargs=* LoadIDE      :call <SID>LoadIDE(<f-args>)
 command -nargs=0 IPythonShell :call <SID>IPythonShell(<f-args>)
 command -nargs=0 IPythonRun   :call <SID>IPythonRun(<f-args>)
 command -nargs=0 -range IPythonPaste :<line1>,<line2>call <SID>IPythonPaste(<f-args>)
 
-map <silent> <C-x> :IPythonPaste<CR>
+" === Keybindings ===
+" Run dispatch make with F2
+map <F2> :Make<CR>
+map  <silent> <C-x> :IPythonPaste<CR>
+nmap <silent> <F5>  :IPythonRun<CR>
