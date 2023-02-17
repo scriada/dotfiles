@@ -72,8 +72,13 @@ nmap <silent> [1;2D :tabprev<CR>
 nmap <silent> d[ :diffget 1<CR>
 nmap <silent> d] :diffget 3<CR>
 
-" Ctrl-] to search for search under cursor
-nmap <silent> <C-]> :Ag <cword> <CR>
+" Ctrl-# to search for search under cursor
+" (was Ctrl-] but clasahed with tags)
+nmap <silent> <C-#> :Ag <cword> <CR>
+
+" Navigate popup using Ctrl-j and Ctrl-k
+inoremap <expr><C-j> pumvisible()? "\<C-n>" : "\<Down>"
+inoremap <expr><C-k> pumvisible()? "\<C-p>" : "\<Up>"
 
 " F5 to view files in bufexplorer
 map <silent> <unique> <F5> :BufExplorerHorizontalSplit<CR>
