@@ -9,7 +9,7 @@ endif
   
 let g:ide_loaded = 1
 let g:ide_ipython_pane_id = -1
-let g:ide_buffer_file = "/tmp/_tmux_ide_buffer.txt"
+let g:ide_buffer_file = "/tmp/_tmux_ide_buffer.". getpid() .".txt"
 
 " generic function to send-keys to a tmux pand
 function! s:TmuxSend(id, cmd)
@@ -43,9 +43,14 @@ function! s:IPythonShell()
             let cmd = "ipython"
         endif
         let ret = system("tmux split-window -p 30 \"". cmd ."\"")
-        let g:ide_ipython_pane_id = max(s:TmuxPanes())
+        call s:LinkIDE(max(s:TmuxPanes()))
     endif
-endfunction 
+endfunction
+
+function! s:IDELink(pane_id)
+    let g:ide_ipython_pane_id = a:pane_id
+endfunction
+
 
 function! s:IPythonRun()
     call s:IPythonShell()
@@ -59,7 +64,7 @@ endfun
 
 
 " Load disabled heavyweight plugins used for IDE
-function! s:LoadIDE(...)
+function! s:IDEInit(...)
     call plug#load('YouCompleteMe')
     call plug#load('ale')
     call plug#load('ale')
@@ -75,9 +80,10 @@ function! s:LoadIDE(...)
 endfunction 
 
 
-command -nargs=* LoadIDE      :call <SID>LoadIDE(<f-args>)
+command -nargs=* IDEInit      :call <SID>IDEInit(<f-args>)
 command -nargs=0 IPythonShell :call <SID>IPythonShell(<f-args>)
 command -nargs=0 IPythonRun   :call <SID>IPythonRun(<f-args>)
+command -nargs=1 IDELink      :call <SID>IDELink(<f-args>)
 command -nargs=0 -range IPythonPaste :<line1>,<line2>call <SID>IPythonPaste(<f-args>)
 
 " === Keybindings ===
