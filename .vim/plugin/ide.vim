@@ -43,7 +43,7 @@ function! s:IPythonShell()
             let cmd = "ipython"
         endif
         let ret = system("tmux split-window -p 30 \"". cmd ."\"")
-        call s:LinkIDE(max(s:TmuxPanes()))
+        call s:IDELink(max(s:TmuxPanes()))
     endif
 endfunction
 
