@@ -20,6 +20,7 @@ endfunction
 "   returns: list of ints
 function! s:TmuxPanes()
     let ret = system("tmux list-panes -F '#{pane_id}'")
+    " pane ids are of the form %123 so need to convert to integers so we can sort
     let pane_ids = map(split(substitute(ret, "\%\\(\\d\\+\\)", "\\1", "g"), "\n"), "str2nr(v:val)")
     return pane_ids
 endfunction
