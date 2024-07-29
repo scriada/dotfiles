@@ -20,6 +20,9 @@ set incsearch       " incremental search
 set scrolloff=5     " minimum number of lines to keep above below cursor
 set sidescrolloff=5 " minimum number of columns to keep the the side of the cursor
 set mouse=a         " enable mouse
+if !has('nvim')
+    set ttymouse=xterm2 " needed for tmux?
+endif
 set shortmess+=I    " hide welcome message
 set history=500     " more history
 set laststatus=2    " always display status menu
@@ -74,7 +77,7 @@ nmap <silent> d] :diffget 3<CR>
 
 " Ctrl-# to search for search under cursor
 " (was Ctrl-] but clasahed with tags)
-nmap <silent> <C-#> :Ag <cword> <CR>
+nmap <silent> <C-t> :Ag <cword> <CR>
 
 " Navigate popup using Ctrl-j and Ctrl-k
 inoremap <expr><C-j> pumvisible()? "\<C-n>" : "\<Down>"
@@ -82,13 +85,19 @@ inoremap <expr><C-k> pumvisible()? "\<C-p>" : "\<Up>"
 
 " F5 to view files in bufexplorer
 map <silent> <unique> <F5> :BufExplorerHorizontalSplit<CR>
+nnoremap <F5> "=strftime("%c")<CR>P
 
 " Plugins --------------------------------------------------------------
+let inform_highlight_glulx=1
 
 " Plugins
-call plug#begin('~/.vim/bundle')
-source ~/.vim/plugins.vim
-call plug#end()
+if has('nvim')
+    " neovim plugins
+else
+    call plug#begin('~/.vim/bundle')
+    source ~/.vim/plugins.vim
+    call plug#end()
+endif
 
 " netrw handler for opening html links
 fun! s:NFH_html(pagefile)
@@ -103,20 +112,26 @@ endfun
 
 " GUI settings ------------------------------------------------------
 
-if $COLORTERM == "gnome-terminal"
+if $COLORTERM == "gnome-terminal" || $COLORTERM == "truecolor"
     set t_Co=256 " gnome terminal is color compatible
-elseif $TERM == "linux" || $TERM == "screen"
-    let g:CSApprox_loaded=1 " For a linux console, disable CSApprox
+"elseif $TERM == "linux" || $TERM == "screen"
+"    let g:CSApprox_loaded=1 " For a linux console, disable CSApprox
 endif
 
 set ttyfast
 set lazyredraw
 
-if filereadable(expand("~/.vimrc_background"))
-    let base16colorspace=256
-    source ~/.vimrc_background
+if has('nvim')
+    colorscheme evening
 else
-    colorscheme wombat
+    if $JUPYTER_SERVER_ROOT != ""
+        colorscheme molokai
+    elseif filereadable(expand("~/.vimrc_background"))
+        let base16colorspace=256
+        source ~/.vimrc_background
+    else
+        colorscheme wombat
+    endif
 endif
 
 hi SpellBad cterm=underline ctermfg=black
