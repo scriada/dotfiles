@@ -68,8 +68,13 @@ nmap <silent> ,/ :nohlsearch<CR>
 
 " shift-left/right to switch between tabs
 " need explicit keybindings in order to work with screen/tmux
-nmap <silent> [1;2C :tabnext<CR>
-nmap <silent> [1;2D :tabprev<CR>
+if has('nvim')
+    nmap <silent> <S-Right> :tabnext<CR>
+    nmap <silent> <S-Left> :tabprev<CR>
+else
+   nmap <silent> [1;2C :tabnext<CR>
+   nmap <silent> [1;2D :tabprev<CR>
+endif
 
 " useful commands when merging in vimdiff
 nmap <silent> d[ :diffget 1<CR>
@@ -88,14 +93,14 @@ map <silent> <unique> <F5> :BufExplorerHorizontalSplit<CR>
 nnoremap <F5> "=strftime("%c")<CR>P
 
 " Plugins --------------------------------------------------------------
-let inform_highlight_glulx=1
-
-" Plugins
 if has('nvim')
-    " neovim plugins
+    call plug#begin('~/.config/nvim/plugged')
+    source ~/.config/nvim/plugins.vim
+    call plug#end()
 else
     call plug#begin('~/.vim/bundle')
     source ~/.vim/plugins.vim
+    let inform_highlight_glulx=1
     call plug#end()
 endif
 
@@ -111,19 +116,15 @@ fun! s:NFH_html(pagefile)
 endfun
 
 " GUI settings ------------------------------------------------------
-
-if $COLORTERM == "gnome-terminal" || $COLORTERM == "truecolor"
-    set t_Co=256 " gnome terminal is color compatible
-"elseif $TERM == "linux" || $TERM == "screen"
-"    let g:CSApprox_loaded=1 " For a linux console, disable CSApprox
-endif
-
 set ttyfast
 set lazyredraw
 
 if has('nvim')
-    colorscheme evening
+    colorscheme material-oceanic
 else
+    if $COLORTERM == "gnome-terminal" || $COLORTERM == "truecolor"
+        set t_Co=256 " gnome terminal is color compatible
+    endif
     if $JUPYTER_SERVER_ROOT != ""
         colorscheme molokai
     elseif filereadable(expand("~/.vimrc_background"))
