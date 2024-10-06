@@ -8,7 +8,7 @@ if exists("g:loaded_ide")
 endif
   
 let g:ide_loaded = 1
-let g:ide_ipython_pane_id = -1
+let g:ide_repl_pane_id = -1
 let g:ide_buffer_file = "/tmp/_tmux_ide_buffer.". getpid() .".txt"
 
 " generic function to send-keys to a tmux pand
@@ -29,34 +29,58 @@ function! s:IPythonPaste() range
     let lines = getline(a:firstline, a:lastline) " get the current visual selection
     call cursor(a:lastline+1, 0) " move to next line
     call writefile(lines + ["--"], g:ide_buffer_file) " write to file
-    call s:TmuxSend(g:ide_ipython_pane_id, "%cpaste -q")
+    call s:TmuxSend(g:ide_repl_pane_id, "%cpaste -q")
     let ret = system("tmux load-buffer ". g:ide_buffer_file)
-    let ret = system("tmux paste-buffer -d -t %". g:ide_ipython_pane_id)
+    let ret = system("tmux paste-buffer -d -t %". g:ide_repl_pane_id)
+endfunction 
+
+function! s:IDEPaste() range
+    let lines = getline(a:firstline, a:lastline) " get the current visual selection
+    call cursor(a:lastline+1, 0) " move to next line
+    call writefile(lines, g:ide_buffer_file, "b") " write to file
+    "call writefile(lines + [""], g:ide_buffer_file) " write to file
+    let ret = system("tmux load-buffer ". g:ide_buffer_file)
+    " note: using -p for paste bracke control codes, avoids each line being
+    " evaluated in the console. Need a terminating CR at the end
+    "let ret = system("tmux paste-buffer -r -d -t %". g:ide_repl_pane_id)
+    let ret = system("tmux paste-buffer -p -d -t %". g:ide_repl_pane_id)
+    call s:TmuxSend(g:ide_repl_pane_id, "")
 endfunction 
 
 " Create an IPython shell in a new pane, if one doesnt already exist
-function! s:IPythonShell()
-    if index(s:TmuxPanes(), g:ide_ipython_pane_id) == -1
+"function! s:IPythonShell()
+"    if index(s:TmuxPanes(), g:ide_repl_pane_id) == -1
+"        let venv = $VIRTUAL_ENV
+"        if venv != ""
+"            let cmd = "bash -c 'source ". $VIRTUAL_ENV ."/bin/activate; ipython'"
+"        else
+"            let cmd = "ipython"
+"        endif
+"        let ret = system("tmux split-window -p 30 \"". cmd ."\"")
+"        call s:IDELink(max(s:TmuxPanes()))
+"    endif
+"endfunction
+
+function! s:IDEConsole(cmd)
+    if index(s:TmuxPanes(), g:ide_repl_pane_id) == -1
         let venv = $VIRTUAL_ENV
-        if venv != ""
+        if a:cmd == "ipython" && venv != ""
             let cmd = "bash -c 'source ". $VIRTUAL_ENV ."/bin/activate; ipython'"
-        else
-            let cmd = "ipython"
         endif
-        let ret = system("tmux split-window -p 30 \"". cmd ."\"")
+        let ret = system("tmux split-window -p 30 \"". a:cmd ."\"")
         call s:IDELink(max(s:TmuxPanes()))
     endif
 endfunction
 
 function! s:IDELink(pane_id)
-    let g:ide_ipython_pane_id = a:pane_id
+    let g:ide_repl_pane_id = a:pane_id
 endfunction
 
 
 function! s:IPythonRun()
     call s:IPythonShell()
     let file = expand('%')
-    call s:TmuxSend(g:ide_ipython_pane_id, "%run ". file)
+    call s:TmuxSend(g:ide_repl_pane_id, "%run ". file)
 endfunction 
 
 function! s:update_status()
@@ -85,10 +109,13 @@ command -nargs=* IDEInit      :call <SID>IDEInit(<f-args>)
 command -nargs=0 IPythonShell :call <SID>IPythonShell(<f-args>)
 command -nargs=0 IPythonRun   :call <SID>IPythonRun(<f-args>)
 command -nargs=1 IDELink      :call <SID>IDELink(<f-args>)
+command -nargs=1 IDEConsole   :call <SID>IDEConsole(<f-args>)
 command -nargs=0 -range IPythonPaste :<line1>,<line2>call <SID>IPythonPaste(<f-args>)
+command -nargs=0 -range IDEPaste :<line1>,<line2>call <SID>IDEPaste(<f-args>)
 
 " === Keybindings ===
 " Run dispatch make with F2
 map <F2> :Make<CR>
-map  <silent> <C-x> :IPythonPaste<CR>
+"map  <silent> <C-x> :IPythonPaste<CR>
+map  <silent> <C-x> :IDEPaste<CR>
 nmap <silent> <F5>  :IPythonRun<CR>
