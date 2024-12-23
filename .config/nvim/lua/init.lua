@@ -12,6 +12,20 @@ require'lspconfig'.matlab_ls.setup{
     },
 }
 
+require'lspconfig'.pylsp.setup{
+    cmd = {'/home/adam/miniconda3/envs/pylsp/bin/pylsp'},
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    ignore = {'W391'},
+                    maxLineLength = 120,
+                }
+            }
+        }
+    }
+}
+
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
