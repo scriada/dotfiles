@@ -1,4 +1,6 @@
-require'lspconfig'.matlab_ls.setup{
+local lspconfig = require'lspconfig'
+
+lspconfig.matlab_ls.setup{
     cmd = { 'matlab-language-server', '--stdio' },
     filetypes = {'matlab'},
     single_file_support = true,
@@ -12,7 +14,7 @@ require'lspconfig'.matlab_ls.setup{
     },
 }
 
-require'lspconfig'.pylsp.setup{
+lspconfig.pylsp.setup{
     cmd = {'/home/adam/miniconda3/envs/pylsp/bin/pylsp'},
     settings = {
         pylsp = {
@@ -24,6 +26,18 @@ require'lspconfig'.pylsp.setup{
             }
         }
     }
+}
+
+lspconfig.ccls.setup {
+  init_options = {
+    compilationDatabaseDirectory = "build";
+    index = {
+      threads = 0;
+    };
+    clang = {
+      excludeArgs = { "-frounding-math"} ;
+    };
+  }
 }
 
 -- Use LspAttach autocommand to only map the following keys
