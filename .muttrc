@@ -13,7 +13,7 @@ set text_flowed
 set text_flowed = yes
 set crypt_use_gpgme = yes # allow use of gpg2
 set delete # don't ask for confirmation to delete mails
-set index_format = "%4C %Z [%{%b %d %H:%M}] %-15.15L (%?l?%4l&%4c?) %s"
+set index_format = "%4C %Z [%{%d-%b-%y %H:%M}] %-15.15L (%?l?%4l&%4c?) %s"
 unset confirmappend # don't ask for comfirmation to append a message to an existing mailbox
 
 set certificate_file = ~/.mutt/cert
@@ -38,8 +38,8 @@ set markers             = no    # no ugly plus signs
 #
 # Viewing preferences
 auto_view         text/html     # auto convert text/html MIME type to text/plain
-#alternative_order text/plain text/enriched text/html # view html last
-alternative_order text/html text/plain text/enriched
+alternative_order text/plain text/enriched text/html # view html last
+# alternative_order text/html text/plain text/enriched
 
 
 # scroll inside the message rather than the index
@@ -49,6 +49,7 @@ bind pager <space> next-page
 bind pager p previous-page
 bind pager J next-page
 bind pager K previous-page
+bind attach <return> view-mailcap
 
 # Gmail bindings
 bind index G imap-fetch-mail
