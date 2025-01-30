@@ -60,3 +60,7 @@
     rebase = true
 [clean]
     requireForce = true
+[blame]
+    date = format:%Y-%m-%d %H:%M
+[core]
+    editor = vim
