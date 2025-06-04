@@ -17,8 +17,8 @@ def _setup_readline(readline):
 
     histfile = os.path.expanduser("~/.fancy-hist")
 
-    readline.parse_and_bind("\C-k: history-search-backward")
-    readline.parse_and_bind("\C-j: history-search-forward")
+    readline.parse_and_bind("\\C-k: history-search-backward")
+    readline.parse_and_bind("\\C-j: history-search-forward")
 
     try:
         readline.read_history_file(histfile)

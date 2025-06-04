@@ -55,6 +55,15 @@ plugins=(git virtualenvwrapper vi-mode colored-man-pages fzf)
 
 # User configuration
 
+
+setopt INC_APPEND_HISTORY  # write history file immediately, not when shell exits
+setopt SHARE_HISTORY      # share history between all sessions
+setopt HIST_EXPIRE_DUPS_FIRST # remove duplicates first
+setopt HIST_SAVE_NO_DUPS # don't record an entry that was just recorded again
+setopt AUTO_PUSHD # push to history file immediately
+setopt PUSHD_IGNORE_DUPS # don't push duplicate entries to the stack
+
+# === Customise PATH ===
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -101,3 +110,27 @@ eval "$(stack --bash-completion-script stack)"
 bindkey -M viins "^p" history-beginning-search-backward
 bindkey -M viins "^n" history-beginning-search-forward
 bindkey -M viins "\e." insert-last-word
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/adam/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/adam/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/adam/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/adam/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# === Node Version Manager ===
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# FZF
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
