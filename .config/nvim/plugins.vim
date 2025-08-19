@@ -1,4 +1,5 @@
 " Theming
+Plug 'scriada/QuickBuf'
 Plug 'catppuccin/nvim'
 Plug 'marko-cerovac/material.nvim'
 Plug 'christoomey/vim-tmux-navigator'

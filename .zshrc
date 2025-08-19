@@ -1,11 +1,12 @@
+# oh-my-zsh configuration block
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -15,7 +16,7 @@ ZSH_THEME="agnoster"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+# DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -51,27 +52,73 @@ export FZF_BASE=~/src/ext/fzf
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git virtualenvwrapper vi-mode colored-man-pages fzf)
+# plugins=(git vi-mode colored-man-pages fzf)
+
+
+# Pure zsh
+fpath+=($HOME/.zsh/pure)
+autoload -Uz promptinit; promptinit
+prompt pure
+
 
 # User configuration
-
-
-setopt INC_APPEND_HISTORY  # write history file immediately, not when shell exits
-setopt SHARE_HISTORY      # share history between all sessions
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+setopt INC_APPEND_HISTORY     # write history file immediately, not when shell exits
+unsetopt SHARE_HISTORY        # share history between all sessions
 setopt HIST_EXPIRE_DUPS_FIRST # remove duplicates first
-setopt HIST_SAVE_NO_DUPS # don't record an entry that was just recorded again
-setopt AUTO_PUSHD # push to history file immediately
-setopt PUSHD_IGNORE_DUPS # don't push duplicate entries to the stack
+setopt HIST_SAVE_NO_DUPS      # don't record an entry that was just recorded again
+setopt AUTO_PUSHD             # push to history file immediately
+setopt PUSHD_IGNORE_DUPS      # don't push duplicate entries to the stack
+
+
+# vim keybindings
+# inputrc port
+bindkey -v
+bindkey '^?'   backward-delete-char # make backspace work in vi mode
+bindkey '^[[A' history-search-backward # up arrow to search history
+bindkey '^[[B' history-search-forward # down arrow to search history
+bindkey '\e.'  insert-last-word # Alt-. to insert last word
+bindkey -M viins "^p" history-beginning-search-backward
+bindkey -M viins "^n" history-beginning-search-forward
+# bindkey -M viins "\e." insert-last-word
+
+autoload -Uz compinit && compinit
 
 # === Customise PATH ===
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# add GO
+export PATH=/usr/local/go/bin:$PATH
+
+# Ruby config
+export PATH=$HOME/gems/bin:$PATH
+export GEM_HOME=$HOME/gems
+
+#TexLive
+export PATH=/usr/local/texlive/2023/bin/x86_64-linux:$PATH
+
+# Neovim
+export PATH=/opt/nvim-linux64/bin:$PATH
+
+# NPM binaries
+# export PATH=$(npm bin):$PATH 
+
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 alias tmux='tmux -2' # support 256 colour
+alias pgcli='~/.virtualenvs/pgcli/bin/pgcli'
 alias tig='tig status'
+alias pipcache='pip download -d /var/www/pypi.local'
+alias pipinstall='pip install --trusted-host=pypi.local --index-url=http://pypi.local/simple'
 alias cat='bat'
+alias gpg='gpg2'
+alias npm-exec='PATH=$(npm bin):$PATH'
+alias vim='nvim'
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -100,37 +147,37 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 
 
 # Haskell stack autocomplete
-autoload -U +X bashcompinit && bashcompinit
-eval "$(stack --bash-completion-script stack)"
+# eval "$(stack --bash-completion-script stack)"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Ctrl p/n to search history up/down
-bindkey -M viins "^p" history-beginning-search-backward
-bindkey -M viins "^n" history-beginning-search-forward
-bindkey -M viins "\e." insert-last-word
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/adam/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/adam/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/adam/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/adam/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('/home/adam/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/adam/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/adam/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/adam/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
 # === Node Version Manager ===
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # lazy loading (call nvm use to initialise)
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # FZF
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# pixi
+export PATH="/home/adam/.pixi/bin:$PATH"
+eval "$(pixi completion --shell zsh)"

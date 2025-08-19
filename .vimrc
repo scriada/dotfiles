@@ -80,9 +80,9 @@ endif
 nmap <silent> d[ :diffget 1<CR>
 nmap <silent> d] :diffget 3<CR>
 
-" Ctrl-# to search for search under cursor
-" (was Ctrl-] but clasahed with tags)
-nmap <silent> <C-t> :Ag <cword> <CR>
+" Ctrl-y to search for search under cursor
+nmap <silent> <C-y> :Rg <cword> <CR>
+nmap <silent> <C-p> :Files <CR>
 
 " Navigate popup using Ctrl-j and Ctrl-k
 inoremap <expr><C-j> pumvisible()? "\<C-n>" : "\<Down>"
@@ -120,7 +120,8 @@ set ttyfast
 set lazyredraw
 
 if has('nvim')
-    colorscheme material-oceanic
+    colorscheme nightfox
+    hi SpellBad cterm=undercurl gui=undercurl guisp=red
 else
     if $COLORTERM == "gnome-terminal" || $COLORTERM == "truecolor"
         set t_Co=256 " gnome terminal is color compatible
@@ -133,6 +134,6 @@ else
     else
         colorscheme wombat
     endif
+    hi SpellBad cterm=underline ctermfg=black
 endif
 
-hi SpellBad cterm=underline ctermfg=black

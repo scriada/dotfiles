@@ -4,3 +4,4 @@
 .vim/bundle
 .vim/doc/tags
 .vim/_snippets/
+.jupyter/lab/workspaces
