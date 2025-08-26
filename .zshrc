@@ -110,13 +110,20 @@ export PATH=/opt/nvim-linux64/bin:$PATH
 
 alias tmux='tmux -2' # support 256 colour
 alias pgcli='~/.virtualenvs/pgcli/bin/pgcli'
-alias tig='tig status'
+alias ti='tig status'
 alias pipcache='pip download -d /var/www/pypi.local'
 alias pipinstall='pip install --trusted-host=pypi.local --index-url=http://pypi.local/simple'
 alias cat='bat'
 alias gpg='gpg2'
 alias npm-exec='PATH=$(npm bin):$PATH'
 alias vim='nvim'
+alias g='git'
+
+function wk() {
+    local _root=~/projects
+    local _project=$(find ${_root} -maxdepth 3 -type f -name 'README.md' | xargs dirname | fzf --preview='bat --color=always {}/README.md')
+    cd $_project
+}
 
 # source $ZSH/oh-my-zsh.sh
 
@@ -125,9 +132,9 @@ export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-    export EDITOR='vim'
+    export EDITOR='nvim'
 else
-    export EDITOR='vim'
+    export EDITOR='nvim'
 fi
 
 # reduce mode-switch to 10ms

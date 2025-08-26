@@ -15,3 +15,8 @@ Plug 'janko-m/vim-test'
 Plug 'tpope/vim-dispatch'
 let test#strategy = "dispatch"
 let test#python#runner = 'pytest'
+
+" LateX
+Plug 'lervag/vimtex', { 'on': ['VimtexCompile'] }
+let g:vimtex_view_general_viewer="evince"
+let g:vimtex_compiler_method="latexmk"

@@ -63,4 +63,4 @@
 [blame]
     date = format:%Y-%m-%d %H:%M
 [core]
-    editor = vim
+    editor = nvim
