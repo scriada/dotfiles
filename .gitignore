@@ -2,6 +2,7 @@
 !/.vim
 .vim/.netrwhist
 .vim/bundle
+.config/nvim/plugged/
 .vim/doc/tags
 .vim/_snippets/
 .jupyter/lab/workspaces

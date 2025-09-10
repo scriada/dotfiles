@@ -1,3 +1,5 @@
+htop
+mutt
 tmux
 tree
 zsh
@@ -6,3 +8,4 @@ ripgrep
 fzf
 git
 gdu
+tig
