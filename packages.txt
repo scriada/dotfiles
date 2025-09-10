@@ -1,0 +1,8 @@
+tmux
+tree
+zsh
+neovim
+ripgrep
+fzf
+git
+gdu
