@@ -71,6 +71,7 @@ setopt HIST_EXPIRE_DUPS_FIRST # remove duplicates first
 setopt HIST_SAVE_NO_DUPS      # don't record an entry that was just recorded again
 setopt AUTO_PUSHD             # push to history file immediately
 setopt PUSHD_IGNORE_DUPS      # don't push duplicate entries to the stack
+setopt AUTO_CD
 
 
 # vim keybindings
