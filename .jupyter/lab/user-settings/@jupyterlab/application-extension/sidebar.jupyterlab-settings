@@ -6,9 +6,11 @@
 
     // Overrides
     // Overrides for where to show sidebar items
-    // e.g., {"tab-manager": "right"}
+    // e.g., {"jp-debugger-sidebar": "left"}
+    // You can also change this by right-clicking the sidebar icons.
     "overrides": {
         "jp-property-inspector": "left",
-        "jp-debugger-sidebar": "left"
+        "jp-debugger-sidebar": "left",
+        "kernelusage-panel-id": "left"
     }
 }

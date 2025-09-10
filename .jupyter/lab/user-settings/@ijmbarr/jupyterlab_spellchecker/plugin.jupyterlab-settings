@@ -1,3 +1,10 @@
 {
-    "language": "en-gb"
+    // Spellchecker
+    // @ijmbarr/jupyterlab_spellchecker:plugin
+    // Spellchecker settings.
+    // ***************************************
+
+    // Language of the spellchecker
+    // Dictionary identifier, e.g. en-us
+    "language": "en_GB-ise"
 }
