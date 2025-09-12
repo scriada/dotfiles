@@ -64,3 +64,5 @@
     date = format:%Y-%m-%d %H:%M
 [core]
     editor = nvim
+[rebase]
+    autostash = true
