@@ -80,6 +80,7 @@ bindkey -v
 bindkey '^?'   backward-delete-char # make backspace work in vi mode
 bindkey '^[[A' history-search-backward # up arrow to search history
 bindkey '^[[B' history-search-forward # down arrow to search history
+bindkey '^R' history-incremental-search-backward
 bindkey '\e.'  insert-last-word # Alt-. to insert last word
 bindkey -M viins "^p" history-beginning-search-backward
 bindkey -M viins "^n" history-beginning-search-forward
@@ -110,20 +111,26 @@ export PATH=/opt/nvim-linux64/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 alias tmux='tmux -2' # support 256 colour
-alias pgcli='~/.virtualenvs/pgcli/bin/pgcli'
 alias ti='tig status'
 alias pipcache='pip download -d /var/www/pypi.local'
 alias pipinstall='pip install --trusted-host=pypi.local --index-url=http://pypi.local/simple'
-alias cat='bat'
+alias cat='batcat'
 alias gpg='gpg2'
 alias npm-exec='PATH=$(npm bin):$PATH'
 alias vim='nvim'
 alias g='git'
 
 function wk() {
+    # list all projects and select using fzf popup
     local _root=~/projects
     local _project=$(find ${_root} -maxdepth 3 -type f -name 'README.md' | xargs dirname | fzf --preview='bat --color=always {}/README.md')
     cd $_project
+}
+
+function rgg() {
+    # find all files matching the pattern
+    # usage: rgg hello
+    rg --hidden --files --glob '*'${1}'*'
 }
 
 # source $ZSH/oh-my-zsh.sh
