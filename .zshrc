@@ -86,7 +86,10 @@ bindkey -M viins "^p" history-beginning-search-backward
 bindkey -M viins "^n" history-beginning-search-forward
 # bindkey -M viins "\e." insert-last-word
 
+# completion
 autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case-insensitive path completion
+zstyle ':completion:*' menu select # allow menu selection
 
 # === Customise PATH ===
 export PATH=$HOME/bin:/usr/local/bin:$PATH
