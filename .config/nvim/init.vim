@@ -2,6 +2,6 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath                        
 
 source ~/.vimrc                                     
-"
-" ~/.config/nvim/lua/init.lua setup for MATLAB lsp
+
+" run after vimrc so plugins are setup
 lua require('init')

@@ -81,7 +81,7 @@ nmap <silent> d[ :diffget 1<CR>
 nmap <silent> d] :diffget 3<CR>
 
 " Ctrl-y to search for search under cursor
-nmap <silent> <C-y> :Rg <cword> <CR>
+nmap <silent> <C-y> :Rg <C-R><C-W><CR>
 nmap <silent> <C-p> :Files <CR>
 
 " Navigate popup using Ctrl-j and Ctrl-k

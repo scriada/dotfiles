@@ -122,6 +122,9 @@ alias gpg='gpg2'
 alias npm-exec='PATH=$(npm bin):$PATH'
 alias vim='nvim'
 alias g='git'
+alias ipy='ipython'
+alias je='~/journal/new post'
+alias jv='~/bin/jv'
 
 function wk() {
     # list all projects and select using fzf popup

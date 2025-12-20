@@ -1,16 +1,28 @@
 " Theming
-Plug 'scriada/QuickBuf'
 Plug 'catppuccin/nvim'
 Plug 'marko-cerovac/material.nvim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'ray-x/lsp_signature.nvim'
 Plug 'EdenEast/nightfox.nvim'
-Plug 'nvim-treesitter/nvim-treesitter'
+
+" navitation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'github/copilot.vim'
+Plug 'scriada/QuickBuf'
+Plug 'christoomey/vim-tmux-navigator'
 
+" dev
+Plug 'stevearc/aerial.nvim'
+Plug 'tpope/vim-fugitive'
+Plug 'ray-x/lsp_signature.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'github/copilot.vim'
+let g:copilot_node_command='~/.nvm/versions/node/v22.19.0/bin/node'
+" disable Copilot by default. Prompt for suggestion with M-\
+let g:copilot_filetypes = {
+    \ '*': v:false,
+    \ }
+
+" testing
 Plug 'janko-m/vim-test'
 Plug 'tpope/vim-dispatch'
 let test#strategy = "dispatch"

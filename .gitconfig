@@ -31,7 +31,7 @@
     lstash = !git --no-pager stash list
     unstage = reset HEAD --
 
-    vdiff = difftool  --no-prompt --tool=vimdiff
+    vdiff = difftool  --no-prompt --tool=nvimdiff
     vlog = log --name-status
     slog = !git --no-pager log --oneline
     hist = log --graph --oneline  --decorate
@@ -48,6 +48,9 @@
 
     # amend without editing the commit messahe
     amend = commit --amend --no-edit
+
+    # publish branch to remote
+    pub = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
 [merge]
     tool = vimdiff
     # only perform a merge if it can be fast forwarded
@@ -66,3 +69,16 @@
     editor = nvim
 [rebase]
     autostash = true
+[diff "jupyternotebook"]
+	command = git-nbdiffdriver diff
+[merge "jupyternotebook"]
+	driver = git-nbmergedriver merge %O %A %B %L %P
+	name = jupyter notebook merge driver
+[difftool "nbdime"]
+	cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
+[difftool]
+	prompt = false
+[mergetool "nbdime"]
+	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool]
+	prompt = false
