@@ -38,7 +38,7 @@
     histl = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
  
     # Push the current branch to the remote "origin", and set it to track the upstream branch
-    publish = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
+    pub = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
 
     # remove all branches that have been merged
     rmerged = "! git branch --merged | egrep -v '(^\\*|master)' | xargs git branch -d"
@@ -68,17 +68,17 @@
 [core]
     editor = nvim
 [rebase]
-    autostash = true
+    autoStash = true
 [diff "jupyternotebook"]
-	command = git-nbdiffdriver diff
+    command = git-nbdiffdriver diff
 [merge "jupyternotebook"]
-	driver = git-nbmergedriver merge %O %A %B %L %P
-	name = jupyter notebook merge driver
+    driver = git-nbmergedriver merge %O %A %B %L %P
+    name = jupyter notebook merge driver
 [difftool "nbdime"]
-	cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
+    cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
 [difftool]
-	prompt = false
+    prompt = false
 [mergetool "nbdime"]
-	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+    cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [mergetool]
-	prompt = false
+    prompt = false
