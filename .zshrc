@@ -76,6 +76,8 @@ setopt AUTO_CD
 
 # vim keybindings
 # inputrc port
+autoload -Uz edit-command-line
+zle -N edit-command-line
 bindkey -v
 bindkey '^?'   backward-delete-char # make backspace work in vi mode
 bindkey '^[[A' history-search-backward # up arrow to search history
@@ -85,6 +87,7 @@ bindkey '\e.'  insert-last-word # Alt-. to insert last word
 bindkey -M viins "^p" history-beginning-search-backward
 bindkey -M viins "^n" history-beginning-search-forward
 # bindkey -M viins "\e." insert-last-word
+bindkey -M vicmd v edit-command-line
 
 # completion
 autoload -Uz compinit && compinit
