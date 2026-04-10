@@ -14,7 +14,7 @@ Plug 'stevearc/aerial.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', { 'branch': 'master' }  " TODO - migrate to main?
 Plug 'github/copilot.vim'
 let g:copilot_node_command='~/.nvm/versions/node/v22.19.0/bin/node'
 " disable Copilot by default. Prompt for suggestion with M-\

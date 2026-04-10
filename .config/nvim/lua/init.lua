@@ -1,6 +1,5 @@
-local lspconfig = require'lspconfig'
 
--- lspconfig.matlab_ls.setup{
+-- vim.lsp.config('matlab_ls', {
 --     cmd = { 'matlab-language-server', '--stdio' },
 --     filetypes = {'matlab'},
 --     single_file_support = true,
@@ -12,23 +11,24 @@ local lspconfig = require'lspconfig'
 --             telemetry = true,
 --         },
 --     },
--- }
+-- })
 
-lspconfig.pylsp.setup{
+vim.lsp.config('pylsp', {
     cmd = {'/home/adam/miniconda3/envs/pylsp/bin/pylsp'},
     settings = {
         pylsp = {
             plugins = {
                 pycodestyle = {
-                    ignore = {'W391'},
-                    maxLineLength = 120,
+                    ignore = {'W391', 'E226', 'W503'},
+                    maxLineLength = 160,
                 }
             }
         }
     }
-}
+})
+vim.lsp.enable('pylsp')
 
-lspconfig.ccls.setup {
+vim.lsp.config('ccls', {
   init_options = {
     compilationDatabaseDirectory = "build";
     index = {
@@ -38,7 +38,7 @@ lspconfig.ccls.setup {
       excludeArgs = { "-frounding-math"} ;
     };
   }
-}
+})
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
@@ -86,9 +86,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
   -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-  ensure_installed = { "lua", "vim", "vimdoc", "markdown", "markdown_inline", "python"},
+  ensure_installed = { "lua", "vim", "vimdoc", "markdown", "markdown_inline", "python" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -112,13 +112,13 @@ require'nvim-treesitter.configs'.setup {
     -- list of language that will be disabled
     disable = { "c", "rust" },
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-    disable = function(lang, buf)
-        local max_filesize = 100 * 1024 -- 100 KB
-        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-        if ok and stats and stats.size > max_filesize then
-            return true
-        end
-    end,
+    -- disable = function(lang, buf)
+    --     local max_filesize = 100 * 1024 -- 100 KB
+    --     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+    --     if ok and stats and stats.size > max_filesize then
+    --         return true
+    --     end
+    -- end,
 
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
