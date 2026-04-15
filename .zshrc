@@ -247,4 +247,6 @@ function _lazy_load() {
 if ! [[ -n $CLAUDECODE ]]; then
     # don't lazy load in claude CLI - breaks the AI
     _lazy_load pixi 'pixi completion --shell zsh'
+    _lazy_load glab 'glab completion --shell zsh'
+    _lazy_load docker 'docker completion zsh'
 fi
