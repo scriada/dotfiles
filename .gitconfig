@@ -67,10 +67,13 @@
     date = format:%Y-%m-%d %H:%M
 [core]
     editor = nvim
+    pager = delta
 [rebase]
     autoStash = true
 [diff "jupyternotebook"]
     command = git-nbdiffdriver diff
+[merge]
+    conflictStyle = zdiff3
 [merge "jupyternotebook"]
     driver = git-nbmergedriver merge %O %A %B %L %P
     name = jupyter notebook merge driver
@@ -78,7 +81,16 @@
     cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
 [difftool]
     prompt = false
-[mergetool "nbdime"]
-    cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [mergetool]
     prompt = false
+[mergetool "nbdime"]
+    cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[credential "https://gitlab.com"]
+	helper = 
+    helper = !/usr/bin/glab auth git-credential
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+
