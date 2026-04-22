@@ -155,6 +155,10 @@ else
     export EDITOR='nvim'
 fi
 
+# Allow per-device browser (e.g. Linux, WSL etc.)
+export BROWSER="~/bin/browser"
+
+
 # reduce mode-switch to 10ms
 export KEYTIMEOUT=1
 
