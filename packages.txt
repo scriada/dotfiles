@@ -11,3 +11,4 @@ tmux
 tree
 zsh
 zstd
+rclone
