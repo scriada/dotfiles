@@ -124,16 +124,30 @@ alias cat='batcat'
 alias gpg='gpg2'
 alias npm-exec='PATH=$(npm bin):$PATH'
 alias vim='nvim'
+alias v='nvim'
 alias vi='nvim -u ~/.mvimrc'
 alias g='git'
 alias ipy='ipython'
 alias je='~/journal/new post'
 alias jv='~/bin/jv'
 
+function lsprojects() {
+    # list all projects in dir ${1}
+    local GRN='\e[32m'
+    local YEL='\e[33m'
+    local DEF='\e[0m'
+    while IFS=  read -r -d $'\0'; do
+        local _p=$(dirname ${REPLY})
+        local _b=$(git -C ${_p} rev-parse --abbrev-ref HEAD 2>/dev/null)
+        echo -e "${GRN}${_p} ${YEL}(${_b})${DEF}"
+    done < <(find -L ${1} -maxdepth 3 -type d -name '.git' -print0)
+}
+
 function wk() {
     # list all projects and select using fzf popup
-    local _root=~/projects
-    local _project=$(find ${_root} -maxdepth 3 -type f -name 'README.md' | xargs dirname | fzf --preview='bat --color=always {}/README.md')
+    local _root="${1:=$HOME/projects}"
+    # local _project=$(lsprojects ${_root} | fzf --ansi --preview='batcat --style=plain --color=always {1}/README.md')
+    local _project=$(lsprojects ${_root} | fzf --ansi --preview='git -C {1} slog --color -n 5' | awk '{print $1}')
     cd $_project
 }
 
@@ -154,6 +168,7 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
     export EDITOR='nvim'
 fi
+export LESS='-R' # support color
 
 # Allow per-device browser (e.g. Linux, WSL etc.)
 export BROWSER="~/bin/browser"
