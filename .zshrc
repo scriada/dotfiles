@@ -146,8 +146,8 @@ function lsprojects() {
 function wk() {
     # list all projects and select using fzf popup
     local _root="${1:=$HOME/projects}"
-    # local _project=$(lsprojects ${_root} | fzf --ansi --preview='batcat --style=plain --color=always {1}/README.md')
-    local _project=$(lsprojects ${_root} | fzf --ansi --preview='git -C {1} slog --color -n 5' | awk '{print $1}')
+    local _projects=$(lsprojects ${_root})
+    local _project=$(echo $_projects | fzf --ansi --preview='git -C {1} slog --color -n 5' | awk '{print $1}')
     cd $_project
 }
 
