@@ -1,7 +1,8 @@
 " File: ide.vim
 " Author: Adam Scriven
-" Last Modified: 10th July 2009
-"
+" Last Modified: 25th June 2026
+" Summary: Basic REPL functions.
+" iron.nvim has more features, this is very bare bones but works for me.
 " ------------------------------------------------------------------------------------------------
 if exists("g:loaded_ide")
   finish
@@ -29,7 +30,7 @@ function! s:IPythonPaste() range
     let lines = getline(a:firstline, a:lastline) " get the current visual selection
     call cursor(a:lastline+1, 0) " move to next line
     call writefile(lines + ["--"], g:ide_buffer_file) " write to file
-    call s:TmuxSend(g:ide_repl_pane_id, "%cpaste -q")
+    call s:TmuxSend(g:ide_repl_pane_id, "%cpaste -q")
     let ret = system("tmux load-buffer ". g:ide_buffer_file)
     let ret = system("tmux paste-buffer -d -t %". g:ide_repl_pane_id)
 endfunction 
@@ -40,11 +41,11 @@ function! s:IDEPaste() range
     call writefile(lines, g:ide_buffer_file, "b") " write to file
     "call writefile(lines + [""], g:ide_buffer_file) " write to file
     let ret = system("tmux load-buffer ". g:ide_buffer_file)
-    " note: using -p for paste bracke control codes, avoids each line being
+    " note: using -p for paste bracketted control codes, avoids each line being
     " evaluated in the console. Need a terminating CR at the end
     "let ret = system("tmux paste-buffer -r -d -t %". g:ide_repl_pane_id)
     let ret = system("tmux paste-buffer -p -d -t %". g:ide_repl_pane_id)
-    call s:TmuxSend(g:ide_repl_pane_id, "")
+    call s:TmuxSend(g:ide_repl_pane_id, "")  " send escape, in case we're in vim-insert mode
 endfunction 
 
 " Create an IPython shell in a new pane, if one doesnt already exist
@@ -63,11 +64,14 @@ endfunction
 
 function! s:IDEConsole(cmd)
     if index(s:TmuxPanes(), g:ide_repl_pane_id) == -1
+        let pixi_env = $PIXI_ENVIRONMENT_NAME
         let venv = $VIRTUAL_ENV
-        if a:cmd == "ipython" && venv != ""
-            let cmd = "bash -c 'source ". $VIRTUAL_ENV ."/bin/activate; ipython'"
+        if $pixi_env != ""
+            let cmd = "pixi run -e ". $pixi_env ." ". a:cmd
+        elseif a:cmd == "ipython" && $venv != ""
+            let cmd = "bash -c 'source ". $venv ."/bin/activate; ipython'"
         endif
-        let ret = system("tmux split-window -p 30 \"". a:cmd ."\"")
+        let ret = system("tmux split-window -l 30 \"". a:cmd ."\"")
         call s:IDELink(max(s:TmuxPanes()))
     endif
 endfunction
@@ -83,29 +87,29 @@ function! s:IPythonRun()
     call s:TmuxSend(g:ide_repl_pane_id, "%run ". file)
 endfunction 
 
-function! s:update_status()
-    set statusline=[%{virtualenv#statusline()}]\ %f%m%r%h%w\ (%Y)\ %=\ (%l/%L)\ [%p%%]
-endfun
+" function! s:update_status()
+"     set statusline=[%{virtualenv#statusline()}]\ %f%m%r%h%w\ (%Y)\ %=\ (%l/%L)\ [%p%%]
+" endfun
+" 
+" 
+" " Load disabled heavyweight plugins used for IDE
+" function! s:IDEInit(...)
+"     call plug#load('YouCompleteMe')
+"     call plug#load('ale')
+"     call plug#load('ale')
+"     call plug#load('ultisnips')
+"     call plug#load('vim-snippets')
+" 
+"     let venv = get(a:, 1, "")
+"     if venv != ""
+"         execute 'VirtualEnvActivate '. venv
+"     endif
+"     call s:update_status()
+" 
+" endfunction 
 
 
-" Load disabled heavyweight plugins used for IDE
-function! s:IDEInit(...)
-    call plug#load('YouCompleteMe')
-    call plug#load('ale')
-    call plug#load('ale')
-    call plug#load('ultisnips')
-    call plug#load('vim-snippets')
-
-    let venv = get(a:, 1, "")
-    if venv != ""
-        execute 'VirtualEnvActivate '. venv
-    endif
-    call s:update_status()
-
-endfunction 
-
-
-command -nargs=* IDEInit      :call <SID>IDEInit(<f-args>)
+"command -nargs=* IDEInit      :call <SID>IDEInit(<f-args>)
 command -nargs=0 IPythonShell :call <SID>IPythonShell(<f-args>)
 command -nargs=0 IPythonRun   :call <SID>IPythonRun(<f-args>)
 command -nargs=1 IDELink      :call <SID>IDELink(<f-args>)
