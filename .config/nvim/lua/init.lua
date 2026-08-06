@@ -39,6 +39,7 @@ vim.lsp.config('ccls', {
     };
   }
 })
+vim.lsp.enable('ccls')
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer

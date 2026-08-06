@@ -130,6 +130,7 @@ alias g='git'
 alias ipy='ipython'
 alias je='~/journal/new post'
 alias jv='~/bin/jv'
+alias ls='ls --color=auto'
 
 function lsprojects() {
     # list all projects in dir ${1}

@@ -5,7 +5,7 @@ set ssl_force_tls = yes
 set ssl_starttls = yes
 set use_from = yes
 set charset = utf-8
-set editor = vim
+set editor = nvim
 set sort = threads
 set sort_aux = reverse-date-received
 set sleep_time = 0 # speed up folder switch
@@ -47,8 +47,10 @@ bind pager <up>   previous-line
 bind pager <down> next-line
 bind pager <space> next-page
 bind pager p previous-page
-bind pager J next-page
-bind pager K previous-page
+bind pager j next-line
+bind pager k previous-line
+bind pager J next-undeleted
+bind pager K previous-undeleted
 bind attach <return> view-mailcap
 
 # Gmail bindings

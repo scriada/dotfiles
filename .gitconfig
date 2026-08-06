@@ -52,7 +52,7 @@
     # publish branch to remote
     pub = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
 [merge]
-    tool = vimdiff
+    tool = nvimdiff
     # only perform a merge if it can be fast forwarded
     ff = only
 [ui]
@@ -94,3 +94,5 @@
     navigate = true  # use n and N to move between diff sections
     dark = true      # or light = true, or omit for auto-detection
 
+[init]
+	defaultBranch = master
