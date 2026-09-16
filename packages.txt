@@ -4,6 +4,7 @@ git
 git-delta
 htop
 mutt
+neomutt
 neovim
 ripgrep
 tig

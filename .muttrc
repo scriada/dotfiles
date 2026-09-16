@@ -14,6 +14,7 @@ set text_flowed = yes
 set crypt_use_gpgme = yes # allow use of gpg2
 set delete # don't ask for confirmation to delete mails
 set index_format = "%4C %Z [%{%d-%b-%y %H:%M}] %-15.15L (%?l?%4l&%4c?) %s"
+set flag_chars = "✓🟊🗑drO✉on- "
 unset confirmappend # don't ask for comfirmation to append a message to an existing mailbox
 
 set certificate_file = ~/.mutt/cert
@@ -38,8 +39,9 @@ set markers             = no    # no ugly plus signs
 #
 # Viewing preferences
 auto_view         text/html     # auto convert text/html MIME type to text/plain
-alternative_order text/plain text/enriched text/html # view html last
-# alternative_order text/html text/plain text/enriched
+#alternative_order text/plain text/enriched text/html # view html last
+# many companies send very poor text/plain parts, so prefer html to text/plain
+alternative_order text/enriched text/html text/plain text
 
 
 # scroll inside the message rather than the index
@@ -55,6 +57,7 @@ bind attach <return> view-mailcap
 
 # Gmail bindings
 bind index G imap-fetch-mail
+bind index,pager g noop
 macro index,pager ga "<change-folder>=[Google%20Mail]/All%20Mail<enter>" "Go to All Mail"
 macro index,pager gd "<change-folder>=[Google%20Mail]/Drafts<enter>"     "Go to Drafts"
 macro index,pager gi "<change-folder>=INBOX<enter>"                      "Go to Inbox"
@@ -77,6 +80,3 @@ color header     brightgreen default ".*"
 color attachment brightblack black
 color body       brightred   default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+"          # Email addresses
 color body       brightblue  default "(https?|ftp)://[\-\.,/%~\+_:?&=\#a-zA-Z0-9]+" # URL
-
-
-
