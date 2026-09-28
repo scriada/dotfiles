@@ -6,3 +6,5 @@
 .vim/doc/tags
 .vim/_snippets/
 .jupyter/lab/workspaces
+.mutt/bodies/
+.mutt/headers
