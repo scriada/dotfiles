@@ -14,6 +14,12 @@ set smartcase       " ignore case if search pattern is all lowercase
 set autoread        " detect when a file has been modified ourside of vim
 set nobackup        " disable backup files
 set noswapfile      " disable .swp files
+if has('nvim')
+    set undodir=~/.local/share/nvim/undo-dir
+else
+    set undodir=~/.vim/undo-dir
+endif
+set undofile        " save undo history across sessions
 set wildmode=longest,list,full
 set wildmenu        " make menu more intuitive
 set incsearch       " incremental search
